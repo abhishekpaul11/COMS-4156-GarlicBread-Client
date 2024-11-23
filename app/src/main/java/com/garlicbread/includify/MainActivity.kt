@@ -1,4 +1,4 @@
-package com.garlicbread.includify_volunteer
+package com.garlicbread.includify
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

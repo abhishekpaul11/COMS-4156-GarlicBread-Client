@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.garlicbread.includify_volunteer'
+    namespace 'com.garlicbread.includify'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.garlicbread.includify_volunteer"
+        applicationId "com.garlicbread.includify"
         minSdk 24
         targetSdk 34
         versionCode 1
