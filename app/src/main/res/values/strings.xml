@@ -11,4 +11,10 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="explore">Explore</string>
+    <string name="ada_complaint_organisations">ADA Complaint Organisations</string>
+    <string name="no_organisations_found">No Organisations Found</string>
+    <string name="no_resources_added">No resources added for this organisation</string>
+    <string name="usage_instructions">Usage Instructions</string>
+    <string name="target_user_category_s">Target User Category(s)</string>
+    <string name="resource_type_s">Resource Type(s)</string>
 </resources>

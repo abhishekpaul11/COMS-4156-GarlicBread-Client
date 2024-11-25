@@ -1,7 +1,10 @@
 package com.garlicbread.includify
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.garlicbread.includify.databinding.ActivityDashboardBinding
 import com.garlicbread.includify.models.response.User
@@ -10,7 +13,12 @@ import com.garlicbread.includify.util.Constants.Companion.API
 import com.garlicbread.includify.util.Constants.Companion.SHARED_PREF_NAME
 import com.garlicbread.includify.util.Constants.Companion.SHARED_PREF_TAG
 import com.garlicbread.includify.util.Constants.Companion.SHARED_PREF_USER_ID
+import com.garlicbread.includify.util.HelperMethods
 import com.garlicbread.includify.util.HelperMethods.Companion.getAccessToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,16 +34,37 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val name = intent.getStringExtra(SHARED_PREF_NAME)
-        val accessToken = getAccessToken(this)
 
-        if (name.isNullOrEmpty()) {
-            fetchDetails(accessToken)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val accessToken = getAccessToken(this@DashboardActivity)
+                if (name.isNullOrEmpty()) {
+                    fetchDetails(accessToken)
+                }
+                else {
+                    withContext(Dispatchers.Main) {
+                        binding.name.text = name
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@DashboardActivity,
+                        "Server down, please try again.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.e(API, "Failure: ${e.message}")
+                }
+            }
         }
-        else {
-            binding.name.text = name
+
+        binding.exploreButton.setOnClickListener {
+            val newIntent = Intent(this, OrganisationListActivity::class.java)
+            startActivity(newIntent)
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fetchDetails(accessToken: String) {
         RetrofitInstance.api.fetchUserDetails("Bearer $accessToken").enqueue(object : Callback<User> {
 
@@ -43,12 +72,18 @@ class DashboardActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     response.body()?.let { saveDetails(it.name, it.id) }
                     binding.name.text = response.body()?.name ?: "Includify User"
-                } else {
+                }
+                else if (response.code() == 401) {
+                    HelperMethods.signOut(this@DashboardActivity)
+                }
+                else {
+                    binding.name.text = "Includify User"
                     Log.e(API, "Error: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
+                binding.name.text = "Includify User"
                 Log.e(API, "Failure: ${t.message}")
             }
         })

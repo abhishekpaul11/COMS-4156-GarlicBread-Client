@@ -12,6 +12,8 @@ class Constants {
         const val SHARED_PREF_PASSWORD = "password"
         const val SHARED_PREF_ACCESS_TOKEN = "access_token"
 
+        const val INTENT_EXTRAS_ORGANISATION_ID = "org_id"
+
         const val API = "API"
 
     }
