@@ -64,6 +64,20 @@
         tools:text="A non-profit organization focused on education." />
 
     <TextView
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="@string/view_on_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desc" />
+
+    <TextView
         android:id="@+id/no_res_present"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +87,7 @@
         android:layout_marginTop="100dp"
         android:textColor="@android:color/darker_gray"
         tools:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/desc"
+        app:layout_constraintTop_toBottomOf="@id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

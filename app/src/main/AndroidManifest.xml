@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Includify"
         tools:targetApi="31">
         <activity
+            android:name=".ResourceDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrganisationDetailsActivity"
             android:exported="false" />
         <activity

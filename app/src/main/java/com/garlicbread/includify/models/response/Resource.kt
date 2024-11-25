@@ -7,6 +7,10 @@ data class Resource(
     val title: String,
     val description: String?,
     val usageInstructions: String?,
-    val organisationId: String
+    val organisationId: String,
+    val resourceContact: ResourceContact?,
+    val resourceService: ResourceService?,
+    val resourceTool: ResourceTool?,
+    val resourceInfra: ResourceInfra?
 )
 

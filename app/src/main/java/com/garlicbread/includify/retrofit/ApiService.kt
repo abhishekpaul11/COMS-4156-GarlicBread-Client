@@ -2,6 +2,7 @@ package com.garlicbread.includify.retrofit
 
 import com.garlicbread.includify.models.request.LoginRequest
 import com.garlicbread.includify.models.response.Organisation
+import com.garlicbread.includify.models.response.Resource
 import com.garlicbread.includify.models.response.User
 import retrofit2.Call
 import retrofit2.http.Body
@@ -23,4 +24,7 @@ interface ApiService {
 
     @GET("organisation/{id}")
     fun fetchOrganisationById(@Path("id") organisationId: String): Call<Organisation>
+
+    @GET("resource/{id}")
+    fun fetchResourceById(@Path("id") resourceId: String): Call<Resource>
 }

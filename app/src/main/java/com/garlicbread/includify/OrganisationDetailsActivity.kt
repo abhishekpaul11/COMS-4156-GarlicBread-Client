@@ -1,5 +1,7 @@
 package com.garlicbread.includify
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -15,6 +17,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class OrganisationDetailsActivity : AppCompatActivity() {
 
@@ -45,12 +48,21 @@ class OrganisationDetailsActivity : AppCompatActivity() {
                         binding.email.text = organisation.email
                         binding.desc.text = organisation.description ?: "No description provided"
 
+                        binding.map.setOnClickListener {
+                            val latitude = organisation.latitude
+                            val longitude = organisation.longitude
+
+                            val uri = "http://maps.google.com/maps?z=17&q=$latitude,$longitude(${organisation.name})"
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+                            startActivity(intent)
+                        }
+
                         if (organisation.resources.isNotEmpty()) {
                             binding.noResPresent.isVisible = false
                             binding.recyclerView.isVisible = true
                             binding.recyclerView.layoutManager =
                                 LinearLayoutManager(this@OrganisationDetailsActivity)
-                            binding.recyclerView.adapter = ResourceAdapter(organisation.resources)
+                            binding.recyclerView.adapter = ResourceAdapter(organisation.resources, this@OrganisationDetailsActivity, organisation)
                         }
                         else {
                             binding.noResPresent.isVisible = true
@@ -60,7 +72,7 @@ class OrganisationDetailsActivity : AppCompatActivity() {
                     else {
                         binding.noResPresent.isVisible = false
                         binding.recyclerView.isVisible = false
-                        Toast.makeText(this@OrganisationDetailsActivity, "Some error has occurred. Restart the application.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@OrganisationDetailsActivity, "Network call failed. Please try after some time.", Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
