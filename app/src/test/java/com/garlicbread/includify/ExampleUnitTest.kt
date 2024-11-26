@@ -1,4 +1,4 @@
-package com.garlicbread.includify_volunteer
+package com.garlicbread.includify
 
 import org.junit.Test
 

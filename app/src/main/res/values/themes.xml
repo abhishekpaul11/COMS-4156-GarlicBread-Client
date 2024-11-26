@@ -1,9 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.IncludifyVolunteer" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Includify" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.IncludifyVolunteer" parent="Base.Theme.IncludifyVolunteer" />
+    <style name="RoundedBtn">
+        <item name="strokeColor">@color/accent</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="android:backgroundTint">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Includify" parent="Base.Theme.Includify" />
 </resources>
