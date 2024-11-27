@@ -37,7 +37,7 @@ class EmergencyContactsActivity : AppCompatActivity() {
                 ContactsAdapter(fetchContacts(contactsData), this)
         }
         else {
-            binding.noContactsPresent.isVisible = false
+            binding.noContactsPresent.isVisible = true
             binding.recyclerView.isVisible = false
         }
     }

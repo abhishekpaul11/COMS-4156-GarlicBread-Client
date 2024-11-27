@@ -26,7 +26,12 @@ class AddContactActivity : AppCompatActivity() {
             if (name.isNotBlank() && relation.isNotBlank() && number.isNotBlank()) {
                 val sharedPreferences = getSharedPreferences(SHARED_PREF_TAG, MODE_PRIVATE)
                 var contacts = sharedPreferences.getString(SHARED_PREF_CONTACTS, "")
-                contacts += "&$name%$relation%$number"
+                if (contacts?.isNotEmpty() == true) {
+                    contacts += "&$name%$relation%$number"
+                }
+                else {
+                    contacts = "$name%$relation%$number"
+                }
                 sharedPreferences.edit().putString(SHARED_PREF_CONTACTS, contacts).apply()
 
                 Toast.makeText(this, "New contact added", Toast.LENGTH_LONG).show()

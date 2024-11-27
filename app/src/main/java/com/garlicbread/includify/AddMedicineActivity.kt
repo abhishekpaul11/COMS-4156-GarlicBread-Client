@@ -40,7 +40,12 @@ class AddMedicineActivity : AppCompatActivity() {
             if (name.isNotBlank() && desc.isNotBlank() && formattedTime.isNotBlank()) {
                 val sharedPreferences = getSharedPreferences(SHARED_PREF_TAG, MODE_PRIVATE)
                 var medicines = sharedPreferences.getString(SHARED_PREF_MEDICINES, "")
-                medicines += "&$name%$desc%$formattedTime"
+                if (medicines?.isNotEmpty() == true){
+                    medicines += "&$name%$desc%$formattedTime"
+                }
+                else {
+                    medicines = "$name%$desc%$formattedTime"
+                }
                 sharedPreferences.edit().putString(SHARED_PREF_MEDICINES, medicines).apply()
 
                 HelperMethods.scheduleDailyNotification(this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), name)

@@ -32,7 +32,7 @@ class MedicinesActivity : AppCompatActivity() {
                 MedicinesAdapter(fetchMedicines(medicinesData))
         }
         else {
-            binding.noMedicinesPresent.isVisible = false
+            binding.noMedicinesPresent.isVisible = true
             binding.recyclerView.isVisible = false
         }
 
