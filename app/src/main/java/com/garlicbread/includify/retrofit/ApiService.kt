@@ -2,10 +2,12 @@ package com.garlicbread.includify.retrofit
 
 import com.garlicbread.includify.models.request.AppointmentRequest
 import com.garlicbread.includify.models.request.LoginRequest
+import com.garlicbread.includify.models.request.UserRequest
 import com.garlicbread.includify.models.response.Appointment
 import com.garlicbread.includify.models.response.Organisation
 import com.garlicbread.includify.models.response.Resource
 import com.garlicbread.includify.models.response.User
+import com.garlicbread.includify.models.response.UserCategory
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -35,4 +37,10 @@ interface ApiService {
 
     @POST("appointment")
     fun createAppointment(@Header("Authorization") accessToken: String, @Body appointmentRequest: AppointmentRequest): Call<Appointment>
+
+    @POST("registration/create")
+    fun createUser(@Body userRequest: UserRequest): Call<User>
+
+    @GET("registration/category/all")
+    fun getAllUserCategories(): Call<List<UserCategory>>
 }

@@ -94,7 +94,6 @@ class AddAppointmentActivity : AppCompatActivity() {
                             organisation.resources.forEach {
                                 val checkbox = inflater.inflate(R.layout.checkbox, binding.resourcesContainer, false) as CheckBox
                                 checkbox.text = it.title
-                                println(it.title)
                                 checkbox.setOnCheckedChangeListener { _, isChecked ->
                                     if (isChecked) resourceIds.add(it.id)
                                     else resourceIds.remove(it.id)

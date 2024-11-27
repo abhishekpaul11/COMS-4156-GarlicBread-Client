@@ -57,10 +57,14 @@ class HelperMethods {
             }
         }
 
-        fun signOut(context: Context) {
+        fun signOut(context: Context, sessionExpired: Boolean = true) {
             val sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF_TAG, MODE_PRIVATE)
             sharedPreferences.edit().clear().apply()
-            Toast.makeText(context, "Session expired. Please login again.", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                if (sessionExpired) "Session expired. Please login again." else "Signed out successfully",
+                Toast.LENGTH_LONG
+            ).show()
             val newIntent = Intent(context, LoginActivity::class.java)
             newIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             context.startActivity(newIntent)

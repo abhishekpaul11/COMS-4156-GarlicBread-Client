@@ -52,4 +52,9 @@
     <string name="volunteer_details">Volunteer Details</string>
     <string name="no_volunteer_assigned"><i>No volunteer assigned</i></string>
     <string name="appointment_details">Appointment Details</string>
+    <string name="enter_your_details">Enter your details…</string>
+    <string name="age">Age</string>
+    <string name="user_category_s">User Category(s)</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="no_user_categories_present">No User Categories Present</string>
 </resources>

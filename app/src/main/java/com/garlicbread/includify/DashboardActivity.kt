@@ -82,6 +82,10 @@ class DashboardActivity : AppCompatActivity() {
             val newIntent = Intent(this, AppointmentListActivity::class.java)
             startActivity(newIntent)
         }
+
+        binding.signOutBtn.setOnClickListener {
+            HelperMethods.signOut(this, false)
+        }
     }
 
     @SuppressLint("SetTextI18n")

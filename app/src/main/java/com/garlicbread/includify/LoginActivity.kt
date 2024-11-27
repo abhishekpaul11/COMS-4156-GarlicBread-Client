@@ -34,6 +34,11 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isNotBlank() && password.isNotBlank()) login(email, password)
         }
+
+        binding.btnSignUp.setOnClickListener {
+            val newIntent = Intent(this, SignUpActivity::class.java)
+            startActivity(newIntent)
+        }
     }
 
     private fun login(email: String, password: String) {
