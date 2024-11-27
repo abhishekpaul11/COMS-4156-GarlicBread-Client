@@ -5,9 +5,11 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.garlicbread.includify.AddAppointmentActivity
 import com.garlicbread.includify.OrganisationDetailsActivity
 import com.garlicbread.includify.R
 import com.garlicbread.includify.models.response.Organisation
@@ -22,6 +24,7 @@ class OrganisationAdapter(private val itemList: List<Organisation>, private val 
         val address: TextView = itemView.findViewById(R.id.address)
         val email: TextView = itemView.findViewById(R.id.email)
         val desc: TextView = itemView.findViewById(R.id.desc)
+        val visit: Button = itemView.findViewById(R.id.btnVisit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,6 +42,12 @@ class OrganisationAdapter(private val itemList: List<Organisation>, private val 
 
         holder.card.setOnClickListener {
             val newIntent = Intent(context, OrganisationDetailsActivity::class.java)
+            newIntent.putExtra(Constants.INTENT_EXTRAS_ORGANISATION_ID, item.id)
+            context.startActivity(newIntent)
+        }
+
+        holder.visit.setOnClickListener {
+            val newIntent = Intent(context, AddAppointmentActivity::class.java)
             newIntent.putExtra(Constants.INTENT_EXTRAS_ORGANISATION_ID, item.id)
             context.startActivity(newIntent)
         }

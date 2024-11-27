@@ -77,6 +77,11 @@ class DashboardActivity : AppCompatActivity() {
             val newIntent = Intent(this, MedicinesActivity::class.java)
             startActivity(newIntent)
         }
+
+        binding.appointmentsButton.setOnClickListener {
+            val newIntent = Intent(this, AppointmentListActivity::class.java)
+            startActivity(newIntent)
+        }
     }
 
     @SuppressLint("SetTextI18n")

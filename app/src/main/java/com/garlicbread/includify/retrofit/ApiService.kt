@@ -1,6 +1,8 @@
 package com.garlicbread.includify.retrofit
 
+import com.garlicbread.includify.models.request.AppointmentRequest
 import com.garlicbread.includify.models.request.LoginRequest
+import com.garlicbread.includify.models.response.Appointment
 import com.garlicbread.includify.models.response.Organisation
 import com.garlicbread.includify.models.response.Resource
 import com.garlicbread.includify.models.response.User
@@ -27,4 +29,10 @@ interface ApiService {
 
     @GET("resource/{id}")
     fun fetchResourceById(@Path("id") resourceId: String): Call<Resource>
+
+    @GET("appointment/user")
+    fun fetchAllAppointments(@Header("Authorization") accessToken: String): Call<List<Appointment>>
+
+    @POST("appointment")
+    fun createAppointment(@Header("Authorization") accessToken: String, @Body appointmentRequest: AppointmentRequest): Call<Appointment>
 }

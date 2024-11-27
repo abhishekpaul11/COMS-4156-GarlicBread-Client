@@ -36,4 +36,20 @@
     <string name="enter_medicine_details">Enter Medicine Details…</string>
     <string name="description">Description</string>
     <string name="timing">Timing</string>
+    <string name="schedule">Schedule</string>
+    <string name="schedule_an_appointment">Schedule An Appointment</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="date">Date</string>
+    <string name="resources_needed">Resources Needed</string>
+    <string name="visit">Visit</string>
+    <string name="no_resources_present">No Resources Present</string>
+    <string name="appointments">Appointments</string>
+    <string name="no_appointments_scheduled">No appointments scheduled</string>
+    <string name="no_resources_booked"><i>No resources booked</i></string>
+    <string name="resources_booked">Resources Booked</string>
+    <string name="appointment_date">Appointment Date</string>
+    <string name="volunteer_details">Volunteer Details</string>
+    <string name="no_volunteer_assigned"><i>No volunteer assigned</i></string>
+    <string name="appointment_details">Appointment Details</string>
 </resources>

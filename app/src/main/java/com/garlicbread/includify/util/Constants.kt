@@ -22,6 +22,7 @@ class Constants {
         const val INTENT_EXTRAS_ORGANISATION_DESC = "org_desc"
         const val INTENT_EXTRAS_RESOURCE_ID = "res_id"
         const val INTENT_EXTRAS_MEDICINE = "medicine"
+        const val INTENT_EXTRAS_APPOINTMENT_ID = "appointment_id"
 
         const val API = "API"
 

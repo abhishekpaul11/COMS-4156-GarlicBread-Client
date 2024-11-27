@@ -29,7 +29,7 @@ class MedicinesActivity : AppCompatActivity() {
             binding.recyclerView.isVisible = true
             binding.recyclerView.layoutManager = LinearLayoutManager(this)
             binding.recyclerView.adapter =
-                MedicinesAdapter(fetchMedicines(medicinesData), this)
+                MedicinesAdapter(fetchMedicines(medicinesData))
         }
         else {
             binding.noMedicinesPresent.isVisible = false

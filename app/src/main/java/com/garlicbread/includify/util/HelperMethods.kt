@@ -128,5 +128,19 @@ class HelperMethods {
             )
         }
 
+        fun formatTime(milliseconds: Long): String {
+            val totalSeconds = maxOf(0, milliseconds) / 1000
+            val hours = totalSeconds / 3600
+            val minutes = (totalSeconds % 3600) / 60
+
+            val period = if (hours < 12) "am" else "pm"
+            val displayHours = when (hours % 12) {
+                0L -> 12
+                else -> hours % 12
+            }
+
+            return String.format(Locale.getDefault(), "%d:%02d %s", displayHours, minutes, period)
+        }
+
     }
 }

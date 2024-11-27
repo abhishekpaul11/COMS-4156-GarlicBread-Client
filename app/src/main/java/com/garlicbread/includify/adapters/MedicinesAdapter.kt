@@ -1,6 +1,5 @@
 package com.garlicbread.includify.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.garlicbread.includify.R
 import com.garlicbread.includify.models.Medicine
 
 
-class MedicinesAdapter(private val itemList: List<Medicine>, private val context: Context) :
+class MedicinesAdapter(private val itemList: List<Medicine>) :
     RecyclerView.Adapter<MedicinesAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
