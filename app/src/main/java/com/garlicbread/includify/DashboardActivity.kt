@@ -2,6 +2,7 @@ package com.garlicbread.includify
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -23,6 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
@@ -33,34 +35,56 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val name = intent.getStringExtra(SHARED_PREF_NAME)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(listOf(android.Manifest.permission.POST_NOTIFICATIONS).toTypedArray(), 1);
+        }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val accessToken = getAccessToken(this@DashboardActivity)
-                if (name.isNullOrEmpty()) {
+        val sharedPreferences = getSharedPreferences(SHARED_PREF_TAG, MODE_PRIVATE)
+        val name = sharedPreferences.getString(SHARED_PREF_NAME, "")
+
+        if (name.isNullOrEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val accessToken = getAccessToken(this@DashboardActivity)
                     fetchDetails(accessToken)
-                }
-                else {
+                } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
-                        binding.name.text = name
+                        Toast.makeText(
+                            this@DashboardActivity,
+                            "Server down, please try again.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Log.e(API, "Failure: ${e.message}")
                     }
                 }
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        this@DashboardActivity,
-                        "Server down, please try again.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    Log.e(API, "Failure: ${e.message}")
-                }
             }
+        }
+        else {
+            binding.name.text = name
         }
 
         binding.exploreButton.setOnClickListener {
             val newIntent = Intent(this, OrganisationListActivity::class.java)
             startActivity(newIntent)
+        }
+
+        binding.emergencyContacts.setOnClickListener {
+            val newIntent = Intent(this, EmergencyContactsActivity::class.java)
+            startActivity(newIntent)
+        }
+
+        binding.medicines.setOnClickListener {
+            val newIntent = Intent(this, MedicinesActivity::class.java)
+            startActivity(newIntent)
+        }
+
+        binding.appointmentsButton.setOnClickListener {
+            val newIntent = Intent(this, AppointmentListActivity::class.java)
+            startActivity(newIntent)
+        }
+
+        binding.signOutBtn.setOnClickListener {
+            HelperMethods.signOut(this, false)
         }
     }
 

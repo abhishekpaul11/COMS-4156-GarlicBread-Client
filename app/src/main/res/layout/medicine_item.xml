@@ -26,6 +26,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/medicines"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/medicines"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
@@ -33,58 +44,35 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                tools:text="Global Education Initiative"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                tools:text="Baclofen"
+                app:layout_constraintStart_toEndOf="@id/medicines"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/address"
+                android:id="@+id/desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                tools:text="123 Main Street, Springfield, USA"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                tools:text="Muscle relaxant"
+                app:layout_constraintStart_toEndOf="@id/medicines"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
             <TextView
-                android:id="@+id/email"
+                android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
-                tools:text="info@example.org"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/address" />
-
-            <TextView
-                android:id="@+id/desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
-                android:textStyle="italic"
-                tools:text="A non-profit organization focused on education."
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/email" />
-
-            <Button
-                android:id="@+id/btnVisit"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:text="@string/visit"
-                android:textColor="@color/accent"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                style="@style/RoundedBtn"
-                app:layout_constraintTop_toBottomOf="@id/desc"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp" />
+                android:layout_marginStart="20dp"
+                tools:text="3:00 pm"
+                app:layout_constraintStart_toEndOf="@id/medicines"
+                app:layout_constraintTop_toBottomOf="@id/desc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -34,7 +34,6 @@ class SplashActivity : AppCompatActivity() {
 
         if (name != null) {
             val newIntent = Intent(this, DashboardActivity::class.java)
-            newIntent.putExtra(Constants.SHARED_PREF_NAME, name)
             startActivity(newIntent)
             finish()
         } else {

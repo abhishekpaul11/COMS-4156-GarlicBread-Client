@@ -13,4 +13,13 @@
     </style>
 
     <style name="Theme.Includify" parent="Base.Theme.Includify" />
+
+    <style name="CustomTimePickerStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textColorPrimary">#000000</item> <!-- Black text color -->
+        <item name="android:buttonStyle">@style/CustomButtonStyle</item>
+    </style>
+
+    <style name="CustomButtonStyle">
+        <item name="android:textColor">#000000</item> <!-- Button text color -->
+    </style>
 </resources>
