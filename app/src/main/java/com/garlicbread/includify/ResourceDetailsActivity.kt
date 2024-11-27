@@ -96,7 +96,7 @@ class ResourceDetailsActivity : AppCompatActivity() {
 
     private fun addResourceTool(resourceTool: ResourceTool, linearLayout: LinearLayout) {
         val displayAttribute = DisplayAttribute(this)
-        displayAttribute.setKey("Resource Availability")
+        displayAttribute.setKey("Resource Count")
         displayAttribute.setValue(resourceTool.count.toString())
         linearLayout.addView(displayAttribute)
     }

@@ -1,8 +1,10 @@
 package com.garlicbread.includify
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +18,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class AppointmentListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAppointmentListBinding
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,7 +41,17 @@ class AppointmentListActivity : AppCompatActivity() {
                         binding.noAppointmentsPresent.isVisible = false
                         binding.recyclerView.isVisible = true
                         binding.recyclerView.layoutManager = LinearLayoutManager(this@AppointmentListActivity)
-                        binding.recyclerView.adapter = AppointmentAdapter(response.body()!!.sortedBy { it.organisation.name }, this@AppointmentListActivity)
+
+                        val formatter = DateTimeFormatter.ofPattern("MMddyyyy")
+                        val sortedAppointments = response.body()!!.sortedWith(
+                            compareBy(
+                                { LocalDate.parse(it.date, formatter) },
+                                { it.timeStart },
+                                { it.organisation.name }
+                            )
+                        )
+
+                        binding.recyclerView.adapter = AppointmentAdapter(sortedAppointments, this@AppointmentListActivity)
                     }
                     else if (response.code() == 401) {
                         HelperMethods.signOut(this@AppointmentListActivity)
