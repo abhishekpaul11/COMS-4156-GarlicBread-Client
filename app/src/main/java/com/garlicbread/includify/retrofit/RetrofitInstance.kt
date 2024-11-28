@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://192.168.1.95:8080/"
+    private const val BASE_URL = "https://garlicbread-includify.ue.r.appspot.com/"
 
     val api: ApiService by lazy {
         Retrofit.Builder()
