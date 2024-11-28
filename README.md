@@ -12,10 +12,10 @@ This Android application focuses on the target user group of disabled and the el
 2. They can add details of the type of **medication** they're on and when they're scheduled to consume them. This app aims to deliver them **daily reminders**
 at the specified times so that they don't miss out on their essential medications.
 
-Apart from the above additional features, Includify also uses the [service](https://garlicbread-includify.ue.r.appspot.com/) built by us to implement the following features.
-3. **Explore** - The users can browse nearby places offering them accessibility services. They can use it to get an in-depth idea of the nature of resources
+Apart from the above additional features, Includify also uses the [service](https://garlicbread-includify.ue.r.appspot.com/) built by us to implement the following features. </br>
+1. **Explore** - The users can browse nearby places offering them accessibility services. They can use it to get an in-depth idea of the nature of resources
 they offer and their availability.
-4. **Appointments** - The users can use our service to book appointments at a specific date and time at a give organisation which they plan to visit. They can
+2. **Appointments** - The users can use our service to book appointments at a specific date and time at a give organisation which they plan to visit. They can
 also add resources to the appointment which they plan to use. Additionally, volunteers can choose to add themselves to such appointments via our service as per their convenience
 whose details will also be visible to the users.
 
@@ -24,13 +24,13 @@ It aims to empower them in more ways than one.
 
 ## Installation
 
-**Application**: [Android](https://www.android.com/)
-**Language**: [Kotlin](https://kotlinlang.org/)
+**Application**: [Android](https://www.android.com/)<br>
+**Language**: [Kotlin](https://kotlinlang.org/)<br>
 **Build Tool**: [Gradle](https://gradle.org/)
 
 Use the following command to clone the repo.
 ```agsl
-git clone https://github.com/abhishekpaul11/COMS-4156-GarlicBread-Client
+git clone https://github.com/abhishekpaul11/COMS-4156-GarlicBread-Client.git
 ```
 
 Open the Project only in [Android Studio IDE](https://developer.android.com/studio) which comes with all other necessary tools for building Android apps.
@@ -63,7 +63,7 @@ Use this for running the end-to-end tests.
 ./gradlew connectedDebugAndroidTest
 ```
 
-## Coverage
+## Coverage (56%)
 
 We have added the [Jacoco Gradle Plugin](https://docs.gradle.org/current/userguide/jacoco_plugin.html) to get test coverage. Run the following command to generate the coverage report.
 ```agsl
@@ -71,6 +71,8 @@ We have added the [Jacoco Gradle Plugin](https://docs.gradle.org/current/usergui
 ```
 
 Currently, we are at **56%** branch coverage.
+
+<img width="1145" alt="Screenshot 2024-11-27 at 6 44 57 PM" src="https://github.com/user-attachments/assets/3c8f7c4e-10fd-4a36-b7c8-bff50f5163d2">
 
 ## Deployment
 
