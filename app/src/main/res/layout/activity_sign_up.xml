@@ -6,7 +6,8 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp">
+    android:paddingVertical="30dp"
+    android:paddingHorizontal="40dp">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -17,8 +18,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="60dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etName"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="30dp" />
 
     <EditText
         android:id="@+id/etAge"
