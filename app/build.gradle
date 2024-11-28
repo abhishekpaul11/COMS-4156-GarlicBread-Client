@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
+apply plugin: 'jacoco'
 
 android {
     namespace 'com.garlicbread.includify'
@@ -22,6 +23,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            testCoverageEnabled = true
+        }
+    }
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                excludes = ['jdk.internal.*', 'org.junit.*']
+            }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -32,6 +44,44 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+
+    tasks.register("jacocoTestReport", JacocoReport) {
+        dependsOn testDebugUnitTest
+        dependsOn connectedDebugAndroidTest
+
+        jacocoTestReport {
+            reports {
+                xml.required = true
+                csv.required = true
+                html.required = true
+            }
+        }
+
+        def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*',
+                          '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/AddAppointmentActivity*',
+                          '**/AddContactActivity*', '**/AddMedicineActivity*', '**/AppointmentDetailsActivity*', '**/AppointmentListActivity*',
+                          '**/DashboardActivity*', '**/LoginActivity*', '**/MedicinesActivity*', '**/OrganisationDetailsActivity*',
+                          '**/OrganisationListActivity*', '**/ResourceDetailsActivity*', '**/SignUpActivity*', '**/SplashActivity*', '**/adapters/*', '**/util/*',
+                          '**/components/*']
+
+        def debugTree = fileTree(
+            dir: layout.buildDirectory.dir("tmp/kotlin-classes/debug").get().asFile,
+            excludes: fileFilter
+        )
+
+        sourceDirectories.setFrom(files(["src/main/java"]))
+        classDirectories.setFrom(files([debugTree]))
+        executionData.setFrom(
+            fileTree(
+                dir: layout.buildDirectory.dir("jacoco").get().asFile,
+                includes: ["*.exec"]
+            ),
+            fileTree(
+                dir: layout.buildDirectory.dir("outputs/code_coverage/debugAndroidTest/connected/Pixel 6 - 14").get().asFile,
+                includes: ["*.ec"]
+            )
+        )
     }
 }
 
@@ -46,8 +96,14 @@ dependencies {
     implementation libs.converter.gson
     implementation libs.converter.scalars
     implementation libs.androidx.recyclerview
+    implementation libs.org.jacoco.core
 
     testImplementation libs.junit
+    testImplementation libs.mockito.core
+
+    androidTestImplementation libs.mockito.core
+    androidTestImplementation libs.mockito.android
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.androidx.espresso.contrib
 }
